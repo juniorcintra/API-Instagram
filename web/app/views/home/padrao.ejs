@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Instagram Clone - WEB</title>
+		
+		<!-- JQuery -->
+		<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	
+		<!-- incluindo css -->
+		<link href="css/style.css" rel="stylesheet">
+
+		<script>
+			$(document).ready(function(){
+
+				$('#btn_incluir').click(function(){
+					$('#container_timeline').hide();
+					$('#container_form').show();
+				});
+
+				$('#btn-cancelar-publicacao').click(function(){
+					$('#container_timeline').show();
+					$('#container_form').hide();
+					return false;
+				});
+
+			});
+		</script>
+
+	</head>
+
+	<body>
+
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="col-md-12">
+					<div class="container-fluid">
+						<img alt="Instagram Clone - Versão WEB" src="images/logo2.jpg" class="logo2">
+						<img alt="Incluir" src="images/incluir.jpg" class="pull-right btn-incluir" id="btn_incluir">						
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" id="container_timeline"></div>
+			
+		</div>
+
+
+		<div class="container" style="display:none" id="container_form">
+			<div class="panel panel-default">
+
+			<div class="panel-heading"><h4>Publicar uma foto</h4></div>
+			
+			<div class="panel-body">
+				<div class="form-group">
+					<input type="file" name="arquivo" id="arquivo" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<input type="text" name="titulo" id="titulo" class="form-control" placeholder="Titulo" autocomplete="off">
+				</div>
+
+				<div class="form-group">
+					<button class="btn btn-success" id="btn-publicar">Publicar</button>
+					<button class="btn btn-danger" id="btn-cancelar-publicacao">Cancelar</button>
+				</div>
+				<div id="mensagem"></div>
+			</div>
+		</div>
+	</body>
+</html>
