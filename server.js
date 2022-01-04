@@ -33,7 +33,7 @@ app.post("/api", function (req, res) {
         if (err) {
           res.json(err);
         } else {
-          res.json(records);
+          res.status(200).json(records);
         }
         mongoclient.close();
       });
@@ -48,7 +48,7 @@ app.get("/api", function (req, res) {
         if (err) {
           res.json(err);
         } else {
-          res.json(results);
+          res.status(200).json(results);
         }
         mongoclient.close();
       });
@@ -63,7 +63,7 @@ app.get("/api/:id", function (req, res) {
         if (err) {
           res.json(err);
         } else {
-          res.json(results);
+          res.status(200).json(results);
         }
         mongoclient.close();
       });
@@ -82,7 +82,7 @@ app.put("/api/:id", function (req, res) {
           if (err) {
             res.json(err);
           } else {
-            res.json(records);
+            res.status(200).json(records);
           }
           mongoclient.close();
         }
@@ -100,7 +100,7 @@ app.delete("/api/:id", function (req, res) {
           if (err) {
             res.json(err);
           } else {
-            res.json(records);
+            res.status(200).json(records);
           }
           mongoclient.close();
         }
