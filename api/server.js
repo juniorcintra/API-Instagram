@@ -27,6 +27,8 @@ app.get("/", function (req, res) {
 
 //POST (create)
 app.post("/api", function (req, res) {
+  res.setHeader("Access-Control-Origin", "*");
+
   var dados = req.body;
 
   db.open(function (err, mongoclient) {
@@ -109,6 +111,7 @@ app.delete("/api/:id", function (req, res) {
           } else {
             res.json(records);
           }
+          mongoclient.close();
         }
       );
     });
