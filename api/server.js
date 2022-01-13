@@ -119,24 +119,30 @@ app.get("/api/:id", function (req, res) {
 
 //PUT by ID (update)
 app.put("/api/:id", function (req, res) {
-  res.send("teste");
-  // db.open(function (err, mongoclient) {
-  //   mongoclient.collection("postagens", function (err, collection) {
-  //     collection.update(
-  //       { _id: objectId(req.params.id) },
-  //       { $set: { titulo: req.body.titulo } },
-  //       {},
-  //       function (err, records) {
-  //         if (err) {
-  //           res.json(err);
-  //         } else {
-  //           res.json(records);
-  //         }
-  //         mongoclient.close();
-  //       }
-  //     );
-  //   });
-  // });
+  db.open(function (err, mongoclient) {
+    mongoclient.collection("postagens", function (err, collection) {
+      collection.update(
+        { _id: objectId(req.params.id) },
+        {
+          $push: {
+            comentarios: {
+              id_comentario: new objectId(),
+              comentario: req.body.comentario,
+            },
+          },
+        },
+        {},
+        function (err, records) {
+          if (err) {
+            res.json(err);
+          } else {
+            res.json(records);
+          }
+          mongoclient.close();
+        }
+      );
+    });
+  });
 });
 
 //DELETE by ID (remover)
