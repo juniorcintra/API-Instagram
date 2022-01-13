@@ -34,12 +34,28 @@
                   element.titulo + 
                 '</span>' +
                 '<img src="http://localhost:8080/imagens/'+element.url_imagem+'" />'+
+                '<div class="comentarios" id="comentarios_'+element._id+'"></div>'+
                 '<div class="comentar">'+ 
                   '<input type="text" class="form-control input_comentario" id="postagem_'+element._id+'" placeholder="Adicione um comentário..."/>'+
                   '<button class="btn btn-default btn_postagem" value="'+element._id+'" type="button">Comentar</button>'+
                 '</div>'+
               '</div>'
               );
+
+              if(element.comentarios != undefined){
+                var comentarios = element.comentarios;
+                for (let j = 0; j < comentarios.length; j++) {
+                  const comentario = comentarios[j];
+
+                  $("#comentarios_"+element._id).append(
+                    '<div class="txt_comentario">'+
+                      comentario.comentario +
+                    '</div>'  
+                  );
+
+                  
+                }
+              }
               
             }
 
