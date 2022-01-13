@@ -113,24 +113,25 @@ app.get("/api/:id", function (req, res) {
 
 //PUT by ID (update)
 app.put("/api/:id", function (req, res) {
-  db.open(function (err, mongoclient) {
-    mongoclient.collection("postagens", function (err, collection) {
-      collection.update(
-        { _id: objectId(req.params.id) },
-        { $set: { titulo: req.body.titulo } },
-        {},
-        function (err, records) {
-          if (err) {
-            res.json(err);
-          } else {
-            res.json(records);
-          }
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  // db.open(function (err, mongoclient) {
+  //   mongoclient.collection("postagens", function (err, collection) {
+  //     collection.update(
+  //       { _id: objectId(req.params.id) },
+  //       { $set: { titulo: req.body.titulo } },
+  //       {},
+  //       function (err, records) {
+  //         if (err) {
+  //           res.json(err);
+  //         } else {
+  //           res.json(records);
+  //         }
 
-          mongoclient.close();
-        }
-      );
-    });
-  });
+  //         mongoclient.close();
+  //       }
+  //     );
+  //   });
+  // });
 });
 
 //DELETE by ID (remover)
