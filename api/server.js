@@ -80,6 +80,21 @@ app.get("/api", function (req, res) {
   });
 });
 
+app.get("/imagens/:imagem", function (req, res) {
+  var img = req.params.imagem;
+
+  fs.readFile("./uploads/" + img, function (err, content) {
+    if (err) {
+      res.status(400).json(err);
+      return;
+    }
+
+    res.writeHead(200, { "Content-type": "image/jpg" });
+
+    res.end(content);
+  });
+});
+
 //GET by ID (ready)
 app.get("/api/:id", function (req, res) {
   db.open(function (err, mongoclient) {
