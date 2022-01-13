@@ -18,6 +18,34 @@
   <script>
     $(document).ready(function() {
 
+      function carrega_postagens(){
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:8080/api");
+
+        xhr.onload = function(){
+          if(xhr.status === 200){
+            var data = $.parseJSON(xhr.responseText);
+            for (let i = 0; i < data.length; i++) {
+              const element = data[i];
+
+              $("#container_timeline").append(
+              '<div class="publicacao">'+
+                '<span class="titulo">'+ 
+                  element.titulo + 
+                '</span>' +
+                '<img src="http://localhost:8080/uploads/'+element.url_imagem+'" />'+
+              '</div>'
+              );
+              
+            }
+          }
+		    }
+
+        xhr.send();
+      }
+
+      carrega_postagens();
+
       $('#btn_incluir').click(function() {
         $('#container_timeline').hide();
         $('#container_form').show();
